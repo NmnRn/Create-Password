@@ -47,10 +47,6 @@ fetch() {
     curl -fSL --retry 3 --retry-delay 1 "$url" -o "$dest"
 }
 
-update_repos() {
-    info "Updating package repositories..."
-    zypper refresh
-}
 
 health_check() {
     info "Running health check..."
@@ -83,8 +79,6 @@ Categories=Utility;Security;
 Keywords=password;generator;security;
 EOF
 }
-
-update_repos
 
 if [[ "$AUTO_YES" -eq 0 ]]; then
     read -rp "Upgrade Password Generator in $INSTALL_DIR? [y/N] " confirm
