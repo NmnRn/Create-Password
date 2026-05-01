@@ -47,7 +47,6 @@ fetch() {
     curl -fSL --retry 3 --retry-delay 1 "$url" -o "$dest"
 }
 
-
 health_check() {
     info "Running health check..."
     sudo -u "$TARGET_USER" env PYTHONPATH="$INSTALL_DIR" "$VENV_DIR/bin/python" - <<'PY'
@@ -92,9 +91,6 @@ fetch "$REPO_BASE/password_generator.py" "$TEMP_DIR/password_generator.py"
 fetch "$REPO_BASE/requirements.txt" "$TEMP_DIR/requirements.txt"
 fetch "$REPO_BASE/icon.png" "$TEMP_DIR/icon.png" || true
 
-info "Upgrading Python dependencies..."
-sudo -u "$TARGET_USER" "$VENV_DIR/bin/python" -m pip install --quiet --upgrade -r "$TEMP_DIR/requirements.txt"
-
 info "Updating application files..."
 cp "$TEMP_DIR/app.py"                "$INSTALL_DIR/"
 cp "$TEMP_DIR/password_generator.py" "$INSTALL_DIR/"
@@ -103,6 +99,9 @@ cp "$TEMP_DIR/requirements.txt"      "$INSTALL_DIR/"
 
 info "Fixing file permissions..."
 chown -R "$TARGET_USER":"$TARGET_USER" "$INSTALL_DIR"
+
+info "Upgrading Python dependencies..."
+sudo -u "$TARGET_USER" "$VENV_DIR/bin/python" -m pip install --quiet --upgrade -r "$INSTALL_DIR/requirements.txt"
 
 info "Updating desktop entry..."
 write_desktop
