@@ -57,14 +57,66 @@ Installs to `/home/$USER/password-generator`, creates a launcher at `/usr/local/
 
 ### Upgrade
 
+#### Debian/Ubuntu
+
 ```bash
-sudo bash scripts/<distro>/upgrade.sh
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/debian/upgrade.sh | sudo bash
+```
+
+#### Arch/Manjaro
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/arch/upgrade.sh | sudo bash
+```
+
+#### Fedora/RHEL
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/fedora/upgrade.sh | sudo bash
+```
+
+#### openSUSE/SLES
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/opensuse/upgrade.sh | sudo bash
+```
+
+#### Void Linux
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/void/upgrade.sh | sudo bash
 ```
 
 ### Uninstall
 
+#### Debian/Ubuntu
+
 ```bash
-sudo bash scripts/<distro>/uninstall.sh
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/debian/uninstall.sh | sudo bash
+```
+
+#### Arch/Manjaro
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/arch/uninstall.sh | sudo bash
+```
+
+#### Fedora/RHEL
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/fedora/uninstall.sh | sudo bash
+```
+
+#### openSUSE/SLES
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/opensuse/uninstall.sh | sudo bash
+```
+
+#### Void Linux
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/void/uninstall.sh | sudo bash
 ```
 
 ### Manual install
