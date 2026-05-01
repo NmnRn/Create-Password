@@ -53,7 +53,7 @@ curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/
 curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/void/install.sh | sudo bash
 ```
 
-Installs to `/home/$USER/password-generator`, creates a launcher at `/usr/local/bin/password-generator` and adds a desktop entry.
+Installs to `/home/$USER/password-generator`, creates a launcher at `/usr/local/bin/password-generator` and adds a desktop entry under `/usr/share/applications/`.
 
 ### Upgrade
 
