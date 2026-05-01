@@ -34,6 +34,10 @@ for arg in "$@"; do
     esac
 done
 
+if [[ ! -t 0 || -p /dev/stdin ]]; then
+    AUTO_YES=1
+fi
+
 [[ $EUID -ne 0 ]] && error "Run as root: sudo bash upgrade.sh"
 [[ ! -d "$INSTALL_DIR" ]] && error "$APP_NAME is not installed. Run install.sh first."
 [[ ! -x "$VENV_DIR/bin/python" ]] && error "Venv python not found at $VENV_DIR/bin/python"
