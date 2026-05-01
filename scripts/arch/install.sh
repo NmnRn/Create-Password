@@ -151,12 +151,15 @@ cp "$TEMP_DIR/password_generator.py" "$INSTALL_DIR/"
 cp "$TEMP_DIR/requirements.txt"      "$INSTALL_DIR/"
 [[ -f "$TEMP_DIR/icon.png" ]] && cp "$TEMP_DIR/icon.png" "$INSTALL_DIR/"
 
+info "Fixing file permissions..."
+chown -R "$TARGET_USER":"$TARGET_USER" "$INSTALL_DIR"
+
 info "Creating virtual environment..."
-"$PYTHON_BIN" -m venv "$VENV_DIR"
+sudo -u "$TARGET_USER" "$PYTHON_BIN" -m venv "$VENV_DIR"
 [[ -x "$VENV_DIR/bin/python" ]] || error "Venv python not found at $VENV_DIR/bin/python"
 
 info "Installing Python dependencies in venv..."
-"$VENV_DIR/bin/python" -m pip install --quiet -r "$INSTALL_DIR/requirements.txt"
+sudo -u "$TARGET_USER" "$VENV_DIR/bin/python" -m pip install --quiet -r "$INSTALL_DIR/requirements.txt"
 
 info "Creating launcher at $BIN_LINK..."
 cat > "$BIN_LINK" <<EOF
