@@ -37,7 +37,7 @@ for arg in "$@"; do
     esac
 done
 
-if [[ ! -t 0 ]]; then
+if [[ ! -t 0 || -p /dev/stdin ]]; then
     AUTO_YES=1
 fi
 
