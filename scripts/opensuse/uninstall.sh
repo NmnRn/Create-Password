@@ -36,6 +36,10 @@ for arg in "$@"; do
     esac
 done
 
+if [[ ! -t 0 || -p /dev/stdin ]]; then
+    AUTO_YES=1
+fi
+
 [[ $EUID -ne 0 ]] && error "Run as root: sudo bash uninstall.sh"
 
 [[ ! -d "$INSTALL_DIR" ]] && warn "$APP_NAME does not appear to be installed. Cleaning up anyway."
