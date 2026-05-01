@@ -37,6 +37,10 @@ for arg in "$@"; do
     esac
 done
 
+if [[ ! -t 0 ]]; then
+    AUTO_YES=1
+fi
+
 [[ $EUID -ne 0 ]] && error "Run as root: sudo bash install.sh"
 
 fetch() {
