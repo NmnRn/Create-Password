@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "password-generator"
+version = "1.0.0"
+description = "A secure password generator desktop app"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "customtkinter>=5.2.0",
+]
+
+[project.scripts]
+password-generator = "app:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
