@@ -58,6 +58,28 @@ print("Health check OK")
 PY
 }
 
+write_desktop() {
+    local icon_line=""
+    if [[ -f "$INSTALL_DIR/icon.png" ]]; then
+        icon_line="Icon=$INSTALL_DIR/icon.png"
+    fi
+
+    cat > "$DESKTOP_FILE" <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Password Generator
+GenericName=Password Generator
+Comment=Secure password generator - create strong passwords instantly
+Exec=/usr/local/bin/password-generator
+${icon_line}
+Terminal=false
+StartupNotify=false
+Categories=Utility;Security;
+Keywords=password;generator;security;
+EOF
+}
+
 update_repos
 
 if [[ "$AUTO_YES" -eq 0 ]]; then
@@ -83,7 +105,7 @@ cp "$TEMP_DIR/requirements.txt"      "$INSTALL_DIR/"
 [[ -f "$TEMP_DIR/icon.png" ]] && cp "$TEMP_DIR/icon.png" "$INSTALL_DIR/"
 
 info "Updating desktop entry..."
-cp "$TEMP_DIR/password-generator.desktop" "$DESKTOP_FILE"
+write_desktop
 
 if command -v update-desktop-database &>/dev/null; then
     update-desktop-database /usr/share/applications/ 2>/dev/null || true
