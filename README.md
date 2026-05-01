@@ -2,7 +2,7 @@
 
 A simple, secure password generator desktop app built with Python and CustomTkinter.
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
+![Python](https://img.shields.io/badge/Python-3.11%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 ## Features
@@ -16,37 +16,55 @@ A simple, secure password generator desktop app built with Python and CustomTkin
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.11+
 - customtkinter >= 5.2.0
 
 ## Installation
 
-### Quick install (Linux — all distros)
+### Install (Linux — distro-specific)
+
+#### Debian/Ubuntu
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/install.sh | sudo bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/debian/install.sh | sudo bash
 ```
 
-Or clone and install manually:
+#### Arch/Manjaro
 
 ```bash
-git clone https://github.com/NmnRn/Create-Password.git
-cd Create-Password
-sudo bash scripts/install.sh
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/arch/install.sh | sudo bash
 ```
 
-Installs to `/opt/password-generator`, creates a launcher at `/usr/local/bin/password-generator` and adds a desktop entry. Supports Debian/Ubuntu, Fedora/RHEL/CentOS, Arch Linux, openSUSE, and Void Linux.
+#### Fedora/RHEL
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/fedora/install.sh | sudo bash
+```
+
+#### openSUSE/SLES
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/opensuse/install.sh | sudo bash
+```
+
+#### Void Linux
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/NmnRn/Create-Password/main/scripts/void/install.sh | sudo bash
+```
+
+Installs to `/home/$USER/password-generator`, creates a launcher at `/usr/local/bin/password-generator` and adds a desktop entry.
 
 ### Upgrade
 
 ```bash
-sudo bash scripts/upgrade.sh
+sudo bash scripts/<distro>/upgrade.sh
 ```
 
 ### Uninstall
 
 ```bash
-sudo bash scripts/uninstall.sh
+sudo bash scripts/<distro>/uninstall.sh
 ```
 
 ### Manual install
@@ -64,4 +82,4 @@ python3 -m pytest tests/ -v
 
 ## License
 
-MIT
+MIT. See [LICENSE](LICENSE).
