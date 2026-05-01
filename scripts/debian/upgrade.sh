@@ -50,7 +50,7 @@ fetch() {
 
 health_check() {
     info "Running health check..."
-    PYTHONPATH="$INSTALL_DIR" "$VENV_DIR/bin/python" - <<'PY'
+    sudo -u "$TARGET_USER" env PYTHONPATH="$INSTALL_DIR" "$VENV_DIR/bin/python" - <<'PY'
 import customtkinter
 import darkdetect
 import password_generator
@@ -90,17 +90,19 @@ trap 'rm -rf "$TEMP_DIR"' EXIT
 fetch "$REPO_BASE/app.py" "$TEMP_DIR/app.py"
 fetch "$REPO_BASE/password_generator.py" "$TEMP_DIR/password_generator.py"
 fetch "$REPO_BASE/requirements.txt" "$TEMP_DIR/requirements.txt"
-fetch "$REPO_BASE/password-generator.desktop" "$TEMP_DIR/password-generator.desktop"
 fetch "$REPO_BASE/icon.png" "$TEMP_DIR/icon.png" || true
 
 info "Upgrading Python dependencies..."
-"$VENV_DIR/bin/python" -m pip install --quiet --upgrade -r "$TEMP_DIR/requirements.txt"
+sudo -u "$TARGET_USER" "$VENV_DIR/bin/python" -m pip install --quiet --upgrade -r "$TEMP_DIR/requirements.txt"
 
 info "Updating application files..."
 cp "$TEMP_DIR/app.py"                "$INSTALL_DIR/"
 cp "$TEMP_DIR/password_generator.py" "$INSTALL_DIR/"
 cp "$TEMP_DIR/requirements.txt"      "$INSTALL_DIR/"
 [[ -f "$TEMP_DIR/icon.png" ]] && cp "$TEMP_DIR/icon.png" "$INSTALL_DIR/"
+
+info "Fixing file permissions..."
+chown -R "$TARGET_USER":"$TARGET_USER" "$INSTALL_DIR"
 
 info "Updating desktop entry..."
 write_desktop
